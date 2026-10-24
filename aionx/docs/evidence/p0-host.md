@@ -84,3 +84,24 @@ Hai bên chưa so sánh tương đương được: thời gian chạy khác nhau
 - 0.5 Smoke ghi file + approval flow: chờ ít nhất một agent dùng được (xem bảng trên).
 - 0.6 So sánh số đo trước/sau.
 - Exit P0 (dùng hằng ngày 1 tuần qua browser).
+
+## P0b — host không dùng Node (ADR-002), 2026-10-24
+
+`aioncore` được build từ AionCore branch `feat/static-dir` (Rust 1.95.0). Branch này thêm cờ `--static-dir` và **chưa được commit/push**. launchd chạy thẳng `~/.aionx-host/bin/aioncore --static-dir <repo>/out/renderer`; không có bun/Node.
+
+| Kiểm tra                                             | Kết quả                                                                                         |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Process của host                                     | 1 (`aioncore`, 46 MB RSS). Trước đây là 2 process: bun 51 MB + aioncore 45 MB                   |
+| Cold start (launchd → `/api/auth/status` 200)        | **4.17 s**. Trước đây 8.5–9.7 s                                                                 |
+| `/`, `/index.html`                                   | 200 `text/html`, có `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`                       |
+| `/api/conversations` không auth                      | 401 JSON                                                                                        |
+| `/api/does-not-exist`                                | 404, không trả về SPA                                                                           |
+| `/.env`, `/assets/../../etc/passwd`                  | 404                                                                                             |
+| `POST /`                                             | 405                                                                                             |
+| WebSocket `/ws` (token qua `Sec-WebSocket-Protocol`) | open                                                                                            |
+| React WebUI qua trình duyệt                          | Chạy được, phiên đăng nhập vẫn giữ sau khi đổi host                                             |
+| Contract test                                        | 11 pass · 1 todo · 0 fail                                                                       |
+| Unit test `static_web`                               | 8/8 pass; `cargo clippy -p aionui-app --all-targets -D warnings` sạch; `cargo fmt --check` sạch |
+| Khởi động với thư mục thiếu `index.html`             | exit 2, `BOOTSTRAP_CONFIG_INVALID stage=config.static_dir`                                      |
+
+Rủi ro còn mở: CORS ở chế độ webui vẫn mirror mọi origin kèm credentials (preflight từ `https://evil.example` → 200 + `allow-credentials: true`). Web giờ đã cùng origin với API nên host không cần CORS. Đề xuất một PR riêng với cờ opt-in để tắt CORS khi chạy host.
