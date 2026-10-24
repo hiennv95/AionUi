@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  AionX host: aioncore + WebUI without Electron.
+  Rendered by install.sh; placeholders: __HOME__, __APP_DIR__, __DATA_DIR__, __PORT__, __NODE_BIN__.
+  launchd gives the host a clean environment: no variables leak in from the shell or agent session
+  that installed it.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.aionx.host</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__HOME__/.bun/bin/bun</string>
+    <string>scripts/webui.ts</string>
+    <string>--no-build</string>
+    <string>--no-open</string>
+    <string>--data-dir</string>
+    <string>__DATA_DIR__</string>
+    <string>--port</string>
+    <string>__PORT__</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>__APP_DIR__</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>__HOME__</string>
+    <key>PATH</key>
+    <string>__NODE_BIN__:__HOME__/.bun/bin:__HOME__/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>NODE_ENV</key>
+    <string>production</string>
+    <key>AIONUI_BACKEND_BUNDLED_DIR</key>
+    <string>__APP_DIR__/resources/bundled-aioncore</string>
+    <!-- Keep agents' git from walking up into an accidental repo at $HOME. -->
+    <key>GIT_CEILING_DIRECTORIES</key>
+    <string>__HOME__</string>
+    <key>AIONUI_LOG_LEVEL</key>
+    <string>info</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <dict>
+    <key>SuccessfulExit</key>
+    <false/>
+  </dict>
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+
+  <key>StandardOutPath</key>
+  <string>__DATA_DIR__/../logs/host.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>__DATA_DIR__/../logs/host.err.log</string>
+</dict>
+</plist>

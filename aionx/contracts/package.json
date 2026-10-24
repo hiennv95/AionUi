@@ -1,0 +1,12 @@
+{
+  "name": "@aionx/contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1",
+    "yaml": "2.8.1"
+  }
+}

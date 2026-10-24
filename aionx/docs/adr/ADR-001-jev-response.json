@@ -1,0 +1,68 @@
+{
+  "model": "jev-1.14.0",
+  "answers": {
+    "d1_contract_source": {
+      "type": "choice",
+      "choice": "bridge_then_utoipa",
+      "confidence": 0.98,
+      "probabilities": {
+        "utoipa_in_aioncore_only": 0.0,
+        "handwritten_spec_only": 0.01,
+        "bridge_then_utoipa": 0.99
+      }
+    },
+    "d2_remote_access": {
+      "type": "choice",
+      "choice": "private_mesh_vpn",
+      "confidence": 0.92,
+      "probabilities": {
+        "private_mesh_vpn": 0.95,
+        "public_reverse_proxy": 0.05,
+        "native_tls_in_aioncore": 0.0
+      }
+    },
+    "d3_push": {
+      "type": "choice",
+      "choice": "sidecar_service",
+      "confidence": 0.33,
+      "probabilities": {
+        "in_aioncore_rust": 0.02,
+        "sidecar_service": 0.55,
+        "defer_push": 0.43
+      }
+    },
+    "d4_agent_browser": {
+      "type": "choice",
+      "choice": "audit_first",
+      "confidence": 0.95,
+      "probabilities": {
+        "headless_chrome_cdp": 0.01,
+        "playwright_on_host": 0.02,
+        "audit_first": 0.97
+      }
+    },
+    "d5_client_repo": {
+      "type": "choice",
+      "choice": "new_client_repo",
+      "confidence": 0.82,
+      "probabilities": {
+        "new_client_repo": 0.91,
+        "inside_aionui_fork": 0.09
+      }
+    },
+    "d6_flutter_state": {
+      "type": "choice",
+      "choice": "riverpod",
+      "confidence": 0.98,
+      "probabilities": {
+        "riverpod": 0.99,
+        "bloc": 0.01,
+        "provider_setstate": 0.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1544,
+    "output_tokens": 289
+  }
+}
