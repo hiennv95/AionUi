@@ -86,6 +86,8 @@ export type BackendDirConfig = {
 export type BackendLaunchOptions = {
   app: AppMetadata;
   resolveBackend: BackendBinaryResolver;
+  /** Use false for standalone browser hosts; embedded maintenance defaults to local. */
+  local?: boolean;
   port?: number;
   dataDir?: string;
   logDir?: string;
@@ -168,6 +170,8 @@ export type BackendStartupErrorDetails = {
 };
 
 export type BackendStartOptions = {
+  /** Embedded desktop defaults to local; standalone WebUI requires cookie auth. */
+  local?: boolean;
   allowPendingOnHealthTimeout?: boolean;
   onHealthTimeout?: (error: BackendStartupError) => Promise<void> | void;
   onPendingExit?: (error: BackendStartupError) => Promise<void> | void;
@@ -665,7 +669,7 @@ export class BackendLifecycleManager {
     const args = buildSpawnArgs({
       port: this._port,
       dbPath,
-      local: true,
+      local: options?.local ?? true,
       parentPid: process.pid,
       logDir,
       workDir: dirs?.workDir,
@@ -1081,7 +1085,7 @@ export async function startBackend(opts: BackendLaunchOptions): Promise<BackendH
   if (!dataDir) {
     throw new Error('startBackend: dataDir is required');
   }
-  const port = await manager.start(dataDir, opts.logDir, opts.dirs);
+  const port = await manager.start(dataDir, opts.logDir, opts.dirs, { local: opts.local ?? true });
   return {
     port,
     stop: () => manager.stop(),

@@ -1,3 +1,4 @@
+import { withCoreCsrfHeader } from '@/common/adapter/httpBridge';
 import type { ConfigKey, ConfigKeyMap } from './configKeys';
 
 type Subscriber = (value: unknown) => void;
@@ -26,7 +27,7 @@ async function fetchJson<T>(method: string, path: string, body?: unknown): Promi
   }
   const response = await fetch(url, {
     method,
-    headers,
+    headers: withCoreCsrfHeader(method, headers),
     body: body !== undefined ? JSON.stringify(body) : undefined,
   });
   if (!response.ok) {

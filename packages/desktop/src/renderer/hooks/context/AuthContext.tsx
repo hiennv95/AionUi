@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { PREVIEW_SCOPE_KEY_PREFIX } from '@/renderer/pages/conversation/Preview/context/previewScope';
+import { withCoreCsrfHeader } from '@/common/adapter/httpBridge';
 import { refreshSession } from '@/common/adapter/sessionRefresh';
 // M6: CSRF removed with legacy webserver — stub functions for compatibility, re-implement in M7
 const withCsrfToken = <T extends Record<string, unknown>>(data: T): T => data;
@@ -280,9 +281,9 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
       await fetch('/logout', {
         method: 'POST',
         // Logout also needs CSRF token / 登出同样需要 CSRF Token
-        headers: {
+        headers: withCoreCsrfHeader('POST', {
           'Content-Type': 'application/json',
-        },
+        }),
         credentials: 'include',
         body: JSON.stringify(withCsrfToken({})),
       });

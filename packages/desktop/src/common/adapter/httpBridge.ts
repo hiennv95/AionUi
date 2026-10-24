@@ -107,7 +107,7 @@ export class BackendHttpError extends Error {
     } else if (typeof body === 'string') {
       backendMessage = body;
     }
-    super(`Backend ${method} ${path} failed (${status}): ${JSON.stringify(body)}`);
+    super(`Backend ${method} ${path.split(/[?#]/)[0]} failed (${status})`);
     this.name = 'BackendHttpError';
     this.status = status;
     this.code = code;
@@ -156,24 +156,6 @@ export type HttpRequestOptions = {
   headers?: Record<string, string>;
 };
 
-const SENSITIVE_LOG_KEY_PATTERN = /api[_-]?key|authorization|auth[_-]?token|access[_-]?token|refresh[_-]?token|secret/i;
-
-function redactForLog(value: unknown, depth = 0): unknown {
-  if (depth > 8 || value === null || typeof value !== 'object') {
-    return value;
-  }
-  if (Array.isArray(value)) {
-    return value.map((item) => redactForLog(item, depth + 1));
-  }
-
-  return Object.fromEntries(
-    Object.entries(value as Record<string, unknown>).map(([key, entry]) => [
-      key,
-      SENSITIVE_LOG_KEY_PATTERN.test(key) ? '[REDACTED]' : redactForLog(entry, depth + 1),
-    ])
-  );
-}
-
 const REFRESH_ENDPOINT = '/api/auth/refresh';
 
 /**
@@ -185,22 +167,34 @@ function isAuthEndpoint(path: string): boolean {
 }
 
 /**
- * Resolve the Core CSRF double-submit token for the current context.
- *
- * The open-source WebUI removed its CSRF layer with the legacy webserver (M6);
- * a double-submit scheme is slated to return in M7. Until then this is a stub
- * that reports "no token available", so the shared session-refresh primitive
- * (`sessionRefresh.ts`) attaches no `x-csrf-token` header and the backend —
- * which enforces no CSRF check here — accepts the request unchanged.
- *
- * It exists as the single seam every state-changing request would call for its
- * token, so restoring CSRF in M7 (and the aionpro superset, whose backend does
- * enforce the double-submit check) only swaps this body — no caller changes.
- *
- * Returns '' — always, for now.
+ * Read the double-submit cookie issued by AionCore. Local desktop requests
+ * have no cookie and do not need CSRF; browser requests must echo the token.
  */
 export function resolveCoreCsrfToken(): string {
-  return '';
+  if (typeof document === 'undefined') return '';
+  const prefix = 'aionui-csrf-token=';
+  const cookie = document.cookie
+    .split(';')
+    .map((entry) => entry.trim())
+    .find((entry) => entry.startsWith(prefix));
+  if (!cookie) return '';
+  try {
+    return decodeURIComponent(cookie.slice(prefix.length));
+  } catch {
+    return '';
+  }
+}
+
+const CSRF_PROTECTED_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE'];
+
+/**
+ * Add AionCore's double-submit `x-csrf-token` header to a state-changing request.
+ * Every browser transport (fetch, XHR) that mutates backend state must use this.
+ */
+export function withCoreCsrfHeader(method: string, headers: Record<string, string> = {}): Record<string, string> {
+  if (!CSRF_PROTECTED_METHODS.includes(method.toUpperCase())) return headers;
+  const csrfToken = resolveCoreCsrfToken();
+  return csrfToken ? { ...headers, 'x-csrf-token': csrfToken } : headers;
 }
 
 function sendHttpRequest(
@@ -212,7 +206,7 @@ function sendHttpRequest(
   const url = `${getBaseUrl()}${path}`;
   return fetch(url, {
     method,
-    headers,
+    headers: withCoreCsrfHeader(method, headers),
     body: body !== undefined ? JSON.stringify(body) : undefined,
   });
 }
@@ -233,10 +227,10 @@ export async function httpRequest<T>(
     Object.assign(headers, options.headers);
   }
 
-  console.debug(
-    `[httpBridge] ${method} ${path}`,
-    body !== undefined ? JSON.stringify(redactForLog(body)).slice(0, 500) : '(no body)'
-  );
+  const diagnosticPath = path.split(/[?#]/)[0];
+  // Prompts, tool output and error bodies may contain secrets under arbitrary keys.
+  // Keep transport breadcrumbs to method/path/status metadata only.
+  console.debug(`[httpBridge] ${method} ${diagnosticPath}`);
 
   let response = await sendHttpRequest(method, path, headers, body);
 
@@ -245,10 +239,10 @@ export async function httpRequest<T>(
   // no-op outside browser mode and single-flights concurrent 401s into one POST.
   // The auth endpoints themselves are skipped to avoid recursion.
   if (response.status === 401 && !isAuthEndpoint(path)) {
-    console.debug(`[httpBridge] ${method} ${path} → 401, attempting session refresh`);
+    console.debug(`[httpBridge] ${method} ${diagnosticPath} → 401, attempting session refresh`);
     const refreshed = await refreshSession();
     if (refreshed) {
-      console.debug(`[httpBridge] session refreshed, replaying ${method} ${path}`);
+      console.debug(`[httpBridge] session refreshed, replaying ${method} ${diagnosticPath}`);
       response = await sendHttpRequest(method, path, headers, body);
     }
   }
@@ -263,14 +257,14 @@ export async function httpRequest<T>(
       errorBody = rawText;
     }
     if (options?.silentStatuses?.includes(response.status)) {
-      console.debug(`[httpBridge] ${method} ${path} → ${response.status} (silenced)`, errorBody);
+      console.debug(`[httpBridge] ${method} ${diagnosticPath} → ${response.status} (silenced)`);
     } else {
-      console.error(`[httpBridge] ${method} ${path} → ${response.status}`, errorBody);
+      console.error(`[httpBridge] ${method} ${diagnosticPath} → ${response.status}`);
     }
     throw new BackendHttpError({ method, path, status: response.status, body: errorBody });
   }
 
-  console.debug(`[httpBridge] ${method} ${path} → ${response.status} OK`);
+  console.debug(`[httpBridge] ${method} ${diagnosticPath} → ${response.status} OK`);
 
   const contentType = response.headers.get('Content-Type');
   if (!contentType?.includes('application/json')) {
@@ -475,7 +469,7 @@ function ensureWs(): void {
       };
       const eventName = msg.name ?? msg.event;
       const payload = msg.data ?? msg.payload;
-      console.debug('[WS:msg]', eventName, JSON.stringify(payload).slice(0, 200));
+      console.debug('[WS:msg]', eventName);
       if (eventName) {
         dispatchWsEvent(eventName, payload);
       }

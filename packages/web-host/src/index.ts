@@ -34,6 +34,7 @@ export async function startWebHost(opts: WebHostOptions): Promise<WebHostHandle>
     backendHandle = await startBackend({
       app: opts.app,
       resolveBackend: opts.backend.resolveBackend,
+      local: false,
       dataDir: opts.dataDir,
       logDir: opts.logDir,
       dirs: opts.dirs,
@@ -50,6 +51,17 @@ export async function startWebHost(opts: WebHostOptions): Promise<WebHostHandle>
 
   let staticHandle;
   try {
+    // A local-mode backend bypasses user auth. Never proxy it onto the LAN.
+    // Probe before binding; uncertain or unavailable auth fails closed.
+    if (opts.allowRemote) {
+      const response = await fetch(`http://127.0.0.1:${backendHandle.port}/api/auth/user`, {
+        redirect: 'error',
+        signal: AbortSignal.timeout(3000),
+      });
+      if (response.status !== 401) {
+        throw new Error('WEB_HOST_AUTH_REQUIRED: Remote access requires an authenticated backend.');
+      }
+    }
     // 2. Start static-server (M5)
     staticHandle = await startStaticServer({
       staticDir: opts.staticDir,
