@@ -22,5 +22,17 @@
     "networkError": "연결 실패, 다시 시도하세요",
     "serverError": "서버 오류, 나중에 다시 시도하세요",
     "unknown": "로그인 실패, 다시 시도하세요"
+  },
+  "setup": {
+    "subtitle": "이 호스트의 소유자 계정 만들기",
+    "hint": "이 호스트에는 아직 계정이 없습니다. 여기서 만드는 계정이 호스트와 그 위에서 실행되는 모든 것을 소유합니다.",
+    "usernameRequired": "사용자 이름을 입력하세요(3자 이상)",
+    "passwordTooShort": "비밀번호는 8자 이상이어야 합니다",
+    "confirmPassword": "비밀번호 확인",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다",
+    "failed": "계정을 만들지 못했습니다. 다시 시도하세요",
+    "submit": "계정 만들기",
+    "submitting": "계정 만드는 중...",
+    "alreadyDone": "이 호스트에는 이미 소유자 계정이 있습니다. 로그인하세요."
   }
 }

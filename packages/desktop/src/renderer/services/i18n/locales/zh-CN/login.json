@@ -22,5 +22,17 @@
     "networkError": "连接失败，请稍后重试",
     "serverError": "服务器开小差了，请稍后重试",
     "unknown": "登录失败，请稍后再试"
+  },
+  "setup": {
+    "subtitle": "为此主机创建主人账户",
+    "hint": "此主机尚无账户。在这里创建的账户将拥有此主机及其运行的一切。",
+    "usernameRequired": "请输入用户名（至少 3 个字符）",
+    "passwordTooShort": "密码至少 8 个字符",
+    "confirmPassword": "确认密码",
+    "passwordMismatch": "两次输入的密码不一致",
+    "failed": "无法创建账户，请重试",
+    "submit": "创建账户",
+    "submitting": "正在创建账户...",
+    "alreadyDone": "此主机已有主人账户，请登录。"
   }
 }

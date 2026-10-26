@@ -1,0 +1,69 @@
+{
+  "unknownFile": "File không xác định",
+  "newFile": "File mới",
+  "deletedFile": "File đã xoá",
+  "modified": "Đã sửa",
+  "fileChanges": "Thay đổi file",
+  "shell": {
+    "displayName": "Lệnh shell",
+    "description": "Chạy lệnh shell"
+  },
+  "fileOps": {
+    "displayName": "Thao tác file",
+    "description": "Đọc, ghi và sửa file"
+  },
+  "webSearch": {
+    "displayName": "Tìm kiếm web",
+    "description": "Tìm nội dung trên web"
+  },
+  "mcp": {
+    "generic": {
+      "displayName": "Công cụ MCP: {{toolName}}",
+      "description": "Gọi công cụ MCP: {{toolName}}"
+    }
+  },
+  "unknown": {
+    "displayName": "Công cụ không xác định",
+    "description": "Loại công cụ không xác định"
+  },
+  "status": {
+    "pending": "Đang chờ",
+    "executing": "Đang chạy",
+    "success": "Thành công",
+    "error": "Lỗi",
+    "canceled": "Đã huỷ"
+  },
+  "titles": {
+    "web_search_started": "Bắt đầu tìm kiếm web",
+    "web_search_completed": "Tìm kiếm web xong",
+    "web_search": "Tìm kiếm web",
+    "applying_patch": "Đang áp dụng bản vá",
+    "patch_applied": "Đã áp dụng bản vá",
+    "file_patch": "Bản vá file",
+    "mcp_tool_starting": "Công cụ MCP: {{toolName}} (đang khởi động)",
+    "mcp_tool": "Công cụ MCP: {{toolName}}",
+    "execute_command": "Chạy: {{command}}",
+    "command_output": "Kết quả lệnh",
+    "command_completed": "Lệnh đã xong",
+    "shell_command": "Lệnh shell"
+  },
+  "labels": {
+    "search_query": "Từ khoá tìm kiếm:",
+    "file_changes": "Thay đổi file:",
+    "tool_details": "Chi tiết công cụ:",
+    "tool": "Công cụ",
+    "arguments": "Tham số:",
+    "result": "Kết quả:",
+    "command": "Lệnh:",
+    "working_directory": "Thư mục làm việc:",
+    "exit_code": "Mã thoát: {{code}}",
+    "duration": "Thời gian: {{seconds}}",
+    "auto_approved": "Tự động duyệt",
+    "manual_approval": "Duyệt thủ công"
+  },
+  "actions": {
+    "create": "tạo",
+    "modify": "sửa",
+    "delete": "xoá"
+  }
+}

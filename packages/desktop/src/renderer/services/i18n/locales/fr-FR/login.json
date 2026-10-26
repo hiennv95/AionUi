@@ -22,5 +22,17 @@
     "networkError": "Connexion échouée, veuillez réessayer",
     "serverError": "Erreur serveur, veuillez réessayer plus tard",
     "unknown": "Échec de connexion, veuillez réessayer"
+  },
+  "setup": {
+    "subtitle": "Créez le compte propriétaire de cet hôte",
+    "hint": "Cet hôte n'a pas encore de compte. Le compte créé ici possède l'hôte et tout ce qu'il exécute.",
+    "usernameRequired": "Saisissez un nom d'utilisateur (au moins 3 caractères)",
+    "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères",
+    "confirmPassword": "Confirmer le mot de passe",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "failed": "Impossible de créer le compte, veuillez réessayer",
+    "submit": "Créer le compte",
+    "submitting": "Création du compte...",
+    "alreadyDone": "Cet hôte a déjà un compte propriétaire. Veuillez vous connecter."
   }
 }

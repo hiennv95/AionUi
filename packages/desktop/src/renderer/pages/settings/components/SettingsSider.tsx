@@ -12,6 +12,7 @@ import {
   Info,
   Lightning,
   LinkCloud,
+  NetworkTree,
   Puzzle,
   Speed,
   System,
@@ -32,6 +33,7 @@ export const BUILTIN_TAB_IDS = [
   'tools',
   'appearance',
   'webui',
+  'network',
   'pet',
   'system',
   'archived',
@@ -111,6 +113,7 @@ const SettingsSider: React.FC<{ collapsed?: boolean; tooltipEnabled?: boolean }>
         icon: isDesktop ? <Earth /> : <Communication />,
         path: 'webui',
       },
+      network: { id: 'network', label: t('settings.network.navLabel'), icon: <NetworkTree />, path: 'network' },
       pet: { id: 'pet', label: t('pet.desktopPet'), icon: <Cat />, path: 'pet' },
       system: { id: 'system', label: t('settings.system'), icon: <System />, path: 'system' },
       archived: {

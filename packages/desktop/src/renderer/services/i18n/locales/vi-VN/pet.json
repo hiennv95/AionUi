@@ -1,0 +1,17 @@
+{
+  "desktopPet": "Thú cưng màn hình",
+  "enable": "Bật thú cưng màn hình",
+  "size": "Kích thước thú cưng",
+  "sizeSmall": "Nhỏ ({{px}}px)",
+  "sizeMedium": "Vừa ({{px}}px)",
+  "sizeLarge": "Lớn ({{px}}px)",
+  "dnd": "Không làm phiền",
+  "dndDescription": "Thú cưng đứng yên, bỏ qua các sự kiện AI",
+  "confirmBubble": "Hiện yêu cầu cấp quyền trên thú cưng",
+  "confirmBubbleDescription": "Khi tắt, yêu cầu cấp quyền công cụ AI chỉ hiện trong cửa sổ chat chính",
+  "pat": "Vuốt ve",
+  "resetPosition": "Đặt lại vị trí",
+  "hide": "Ẩn",
+  "showHide": "Hiện/Ẩn",
+  "desktopOnly": "Thú cưng màn hình chỉ có trong ứng dụng desktop, không dùng được ở chế độ WebUI trên trình duyệt."
+}

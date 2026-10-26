@@ -22,5 +22,17 @@
     "networkError": "Ошибка подключения, попробуйте снова",
     "serverError": "Ошибка сервера, попробуйте позже",
     "unknown": "Ошибка входа, попробуйте снова"
+  },
+  "setup": {
+    "subtitle": "Create the owner account for this host",
+    "hint": "This host has no account yet. The account you create here owns the host and everything it runs.",
+    "usernameRequired": "Please enter a username (at least 3 characters)",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "confirmPassword": "Confirm password",
+    "passwordMismatch": "Passwords do not match",
+    "failed": "Could not create the account, please try again",
+    "submit": "Create account",
+    "submitting": "Creating account...",
+    "alreadyDone": "This host already has an owner account. Please sign in."
   }
 }

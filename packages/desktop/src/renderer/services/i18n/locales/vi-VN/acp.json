@@ -1,0 +1,32 @@
+{
+  "auth": {
+    "failed": "Xác thực {{backend}} thất bại:\n\n{{error}}\n\nVui lòng kiểm tra trạng thái xác thực của công cụ CLI trên máy",
+    "console_error": "Chi tiết lỗi xác thực ACP:",
+    "failed_confirm": "Xác thực ACP {{backend}} thất bại:\n\n{{error}}\n\nBạn có muốn mở trang cài đặt để cấu hình ngay không?"
+  },
+  "send": {
+    "failed": "Gửi tin nhắn thất bại: {{error}}"
+  },
+  "sendbox": {
+    "placeholder": "Gửi tin nhắn tới {{backend}}..."
+  },
+  "image": {
+    "download": "Tải xuống",
+    "download_aria": "Tải ảnh xuống",
+    "download_success": "Tải xuống thành công",
+    "download_error": "Tải xuống thất bại",
+    "generated_alt": "Ảnh được tạo"
+  },
+  "status": {
+    "connecting": "Đang kết nối tới {{agent}}...",
+    "connected": "Đã kết nối tới {{agent}}",
+    "authenticated": "Đã xác thực với {{agent}}",
+    "session_active": "Phiên đang hoạt động với {{agent}}",
+    "error": "Lỗi kết nối",
+    "unknown": "Trạng thái không xác định"
+  },
+  "config": {
+    "reasoning_effort": "Mức suy luận",
+    "default": "Mặc định"
+  }
+}

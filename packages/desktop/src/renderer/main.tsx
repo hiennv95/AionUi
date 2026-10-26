@@ -68,6 +68,7 @@ import koKR from '@arco-design/web-react/es/locale/ko-KR';
 import trTR from '@arco-design/web-react/es/locale/tr-TR';
 import ruRU from '@arco-design/web-react/es/locale/ru-RU';
 import ptBR from '@arco-design/web-react/es/locale/pt-BR';
+import viVN from '@arco-design/web-react/es/locale/vi-VN';
 import deDE from '@arco-design/web-react/es/locale/de-DE';
 import esES from '@arco-design/web-react/es/locale/es-ES';
 import frFR from '@arco-design/web-react/es/locale/fr-FR';
@@ -167,6 +168,7 @@ const arcoLocales: Record<string, typeof enUS> = {
   'de-DE': completeArcoLocale(deDE),
   'es-ES': completeArcoLocale(esES),
   'fr-FR': completeArcoLocale(frFR),
+  'vi-VN': completeArcoLocale(viVN),
 };
 
 const INSTALLATION_INTEGRITY_FAILURES = new Set<RuntimeFailureKind>([

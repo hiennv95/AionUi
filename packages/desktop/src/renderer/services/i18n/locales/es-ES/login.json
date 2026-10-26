@@ -22,5 +22,17 @@
     "networkError": "Error de conexión, intenta de nuevo",
     "serverError": "Error del servidor, intenta más tarde",
     "unknown": "Error al iniciar sesión, intenta de nuevo"
+  },
+  "setup": {
+    "subtitle": "Crea la cuenta de propietario de este host",
+    "hint": "Este host aún no tiene cuenta. La cuenta que crees aquí será dueña del host y de todo lo que ejecuta.",
+    "usernameRequired": "Introduce un nombre de usuario (al menos 3 caracteres)",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+    "confirmPassword": "Confirmar contraseña",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "failed": "No se pudo crear la cuenta, inténtalo de nuevo",
+    "submit": "Crear cuenta",
+    "submitting": "Creando cuenta...",
+    "alreadyDone": "Este host ya tiene una cuenta de propietario. Inicia sesión."
   }
 }

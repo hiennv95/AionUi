@@ -1,0 +1,38 @@
+{
+  "pageTitle": "AionUi - Đăng nhập",
+  "brand": "AionUi",
+  "subtitle": "Chào mừng trở lại, vui lòng đăng nhập vào tài khoản",
+  "username": "Tên đăng nhập",
+  "usernamePlaceholder": "Nhập tên đăng nhập",
+  "password": "Mật khẩu",
+  "passwordPlaceholder": "Nhập mật khẩu",
+  "rememberMe": "Ghi nhớ đăng nhập",
+  "submit": "Đăng nhập",
+  "submitting": "Đang đăng nhập...",
+  "success": "Đăng nhập thành công! Đang chuyển trang...",
+  "showPassword": "Hiện mật khẩu",
+  "hidePassword": "Ẩn mật khẩu",
+  "languageToggle": "Đổi ngôn ngữ",
+  "footerPrimary": "Biến AI dòng lệnh của bạn",
+  "footerSecondary": "Hiện đại & Hiệu quả",
+  "errors": {
+    "empty": "Vui lòng nhập tên đăng nhập và mật khẩu",
+    "invalidCredentials": "Sai tên đăng nhập hoặc mật khẩu",
+    "tooManyAttempts": "Thử quá nhiều lần, vui lòng thử lại sau",
+    "networkError": "Kết nối thất bại, vui lòng thử lại",
+    "serverError": "Lỗi máy chủ, vui lòng thử lại sau",
+    "unknown": "Đăng nhập thất bại, vui lòng thử lại"
+  },
+  "setup": {
+    "subtitle": "Tạo tài khoản chủ máy cho host này",
+    "hint": "Host này chưa có tài khoản nào. Tài khoản tạo ở đây sẽ là chủ của host và mọi thứ chạy trên đó.",
+    "usernameRequired": "Vui lòng nhập tên đăng nhập (ít nhất 3 ký tự)",
+    "passwordTooShort": "Mật khẩu phải có ít nhất 8 ký tự",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "passwordMismatch": "Mật khẩu không khớp",
+    "failed": "Không tạo được tài khoản, vui lòng thử lại",
+    "submit": "Tạo tài khoản",
+    "submitting": "Đang tạo tài khoản...",
+    "alreadyDone": "Host này đã có tài khoản chủ máy. Vui lòng đăng nhập."
+  }
+}

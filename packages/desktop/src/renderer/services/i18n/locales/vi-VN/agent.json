@@ -1,0 +1,59 @@
+{
+  "health": {
+    "detectedError": "Phát hiện lỗi với agent hiện tại ({{agent}})",
+    "autoSwitching": ". Hệ thống sẽ thử tự động chuyển.",
+    "evaluating": "Đang đánh giá độ trễ mạng và tình trạng mô hình...",
+    "checking": "Đang kiểm tra endpoint của {{agent}}...",
+    "foundBest": "Đã tìm thấy lựa chọn thay thế tốt nhất",
+    "recommendSwitch": "Đề xuất",
+    "available": "Khả dụng",
+    "lowLatency": "Độ trễ thấp",
+    "mediumLatency": "Độ trễ trung bình",
+    "highLatency": "Độ trễ cao",
+    "bestMatch": "Phù hợp nhất",
+    "noAvailable": "Không có agent khả dụng trong môi trường hiện tại",
+    "checkConfig": "Vui lòng kiểm tra cấu hình hoặc thử lại sau"
+  },
+  "setup": {
+    "connectionError": "Lỗi kết nối",
+    "notConfigured": "{{agent}} chưa được cấu hình",
+    "authRequired": "Cần xác thực hoặc API key để dùng agent này.",
+    "findingAlternatives": "Đang tìm lựa chọn thay thế...",
+    "checkingAgent": "Đang kiểm tra {{agent}}...",
+    "alternativesFound": "Tìm thấy {{count}} lựa chọn thay thế",
+    "autoSwitching": "Đang tự động chuyển sang agent khả dụng tốt nhất...",
+    "configError": "Lỗi cấu hình. Vui lòng kiểm tra cài đặt hoặc chọn lựa chọn khác:",
+    "noAlternatives": "Không tìm thấy agent khả dụng",
+    "configureFirst": "Vui lòng cấu hình agent trong Cài đặt trước.",
+    "switching": "Đang chuyển agent..."
+  },
+  "model": {
+    "switchSuccess": "Đã chuyển mô hình",
+    "switchFailed": "Chuyển mô hình thất bại",
+    "searchPlaceholder": "Tìm mô hình",
+    "noResults": "Không có mô hình phù hợp"
+  },
+  "config": {
+    "setting": "Đang áp dụng cài đặt...",
+    "commandAck": "Đã gửi lệnh nhưng chưa xác nhận được trạng thái. Hãy làm mới hoặc thử lại sau.",
+    "timeout": "Hết thời gian chờ xác nhận cài đặt. Đang hiện trạng thái cũ.",
+    "busy": "Một cài đặt khác đang được áp dụng. Thử lại sau.",
+    "failed": "Áp dụng cài đặt thất bại. Đang hiện trạng thái cũ."
+  },
+  "thoughtLevel": {
+    "label": "Mức suy nghĩ",
+    "switchSuccess": "Đã chuyển mức suy nghĩ",
+    "switchFailed": "Chuyển mức suy nghĩ thất bại"
+  },
+  "warmup": {
+    "clickToWake": "Bấm để đánh thức thành viên này"
+  },
+  "runtimeRestart": {
+    "tooltip": "Kết nối lại agent",
+    "confirmContent": "Khởi động lại tiến trình agent để nhận các thay đổi cấu hình CLI bên ngoài (ví dụ đổi kênh). Lịch sử chat được giữ và phiên sẽ tiếp tục khi có thể.",
+    "success": "Đã kết nối lại agent",
+    "failed": "Kết nối lại agent thất bại",
+    "initializingTooltip": "Agent đang khởi tạo. Hãy kết nối lại khi nó sẵn sàng",
+    "processingTooltip": "Đợi phản hồi hiện tại xong rồi mới kết nối lại"
+  }
+}

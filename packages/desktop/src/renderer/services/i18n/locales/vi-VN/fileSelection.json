@@ -1,0 +1,15 @@
+{
+  "selectFile": "Chọn file",
+  "selectDirectory": "Chọn thư mục",
+  "pleaseSelectFile": "Vui lòng chọn một file",
+  "pleaseSelectDirectory": "Vui lòng chọn một thư mục",
+  "webFsPicker": {
+    "loadFailed": "Không mở được thư mục này",
+    "titleDirectory": "Chọn thư mục trên máy chủ",
+    "titleFile": "Chọn file trên máy chủ",
+    "selectedCount": "Đã chọn {{count}}",
+    "up": "Lên",
+    "go": "Đi",
+    "empty": "Trống"
+  }
+}

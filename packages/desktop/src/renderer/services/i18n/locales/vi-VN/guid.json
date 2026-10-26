@@ -1,0 +1,17 @@
+{
+  "promptExamplesHint": "Thử các yêu cầu sau",
+  "defaultPrompts": {
+    "understand": "Tìm hiểu dự án này và giải thích bằng lời dễ hiểu nó làm gì và nên bắt đầu từ đâu",
+    "cleanup": "Tìm các file trùng lặp và vô dụng trong thư mục này và liệt kê để tôi xác nhận",
+    "create": "Làm cho tôi một trang chủ cá nhân thật đẹp và mở nó lên khi xong"
+  },
+  "selectAssistantHint": "Chọn một trợ lý để bắt đầu tác vụ",
+  "workspace": {
+    "workInProject": "Làm việc trong một dự án",
+    "optional": "Tuỳ chọn",
+    "clearWorkspace": "Xoá",
+    "specifyWorkspace": "Chọn thư mục dự án",
+    "searchPlaceholder": "Tìm dự án…",
+    "noProject": "Không có dự án"
+  }
+}
